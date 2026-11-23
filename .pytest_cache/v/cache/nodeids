@@ -1,0 +1,7 @@
+[
+  "image-compression-animation/tests/test_math_pipeline.py::test_extract_patch_dimensions",
+  "image-compression-animation/tests/test_math_pipeline.py::test_fallback_image_and_matrix_loading",
+  "image-compression-animation/tests/test_math_pipeline.py::test_full_pipeline_exports",
+  "image-compression-animation/tests/test_math_pipeline.py::test_low_rank_error_decreases_and_storage_formula",
+  "image-compression-animation/tests/test_math_pipeline.py::test_symmetric_ata_and_eigen_svd_identity"
+]

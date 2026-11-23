@@ -1,0 +1,101 @@
+{
+  "source_image": "sample_photo.jpg",
+  "matrix_shape": [
+    180,
+    320
+  ],
+  "original_file_bytes": 863442,
+  "original_matrix_values": 57600,
+  "ata_symmetry_error": 0.0,
+  "v_orthonormality_error": 3.42852602725482e-14,
+  "ata_reconstruction_rel_error": 2.331650626123537e-15,
+  "svd_reconstruction_rel_error": 4.184642771040454e-15,
+  "eigen_svd_lambda_sigma2_max_rel_diff": 4.2362493588306023e-16,
+  "scipy_svd_max_rel_diff": 3.253022985856602e-16,
+  "top_10_singular_values": [
+    16775.068096239145,
+    5030.673209402564,
+    2609.9142866766606,
+    2358.6893285663123,
+    2076.28375378534,
+    1746.0981886971463,
+    1443.7643708805822,
+    1360.630596203106,
+    1241.5928501217384,
+    1200.0523030960035
+  ],
+  "top_10_eigenvalues": [
+    281402909.6334605,
+    25307672.939800683,
+    6811652.5837989105,
+    5563415.348692587,
+    4310954.226232944,
+    3048858.8845714633,
+    2084455.5586241828,
+    1851315.6193240148,
+    1541552.8054733886,
+    1440125.5301659887
+  ],
+  "reconstructions": [
+    {
+      "rank_k": 1,
+      "stored_values": 501,
+      "original_values": 57600,
+      "storage_ratio": 0.008698,
+      "space_saved_percent": 99.13,
+      "frobenius_relative_error": 0.446105,
+      "rmse": 34.842,
+      "psnr_db": 17.29,
+      "energy_retained_percent": 80.1,
+      "image_file": "recon_k_001.png"
+    },
+    {
+      "rank_k": 5,
+      "stored_values": 2505,
+      "original_values": 57600,
+      "storage_ratio": 0.04349,
+      "space_saved_percent": 95.65,
+      "frobenius_relative_error": 0.281919,
+      "rmse": 22.009,
+      "psnr_db": 21.28,
+      "energy_retained_percent": 92.05,
+      "image_file": "recon_k_005.png"
+    },
+    {
+      "rank_k": 10,
+      "stored_values": 5010,
+      "original_values": 57600,
+      "storage_ratio": 0.086979,
+      "space_saved_percent": 91.3,
+      "frobenius_relative_error": 0.226075,
+      "rmse": 17.613,
+      "psnr_db": 23.21,
+      "energy_retained_percent": 94.89,
+      "image_file": "recon_k_010.png"
+    },
+    {
+      "rank_k": 20,
+      "stored_values": 10020,
+      "original_values": 57600,
+      "storage_ratio": 0.173958,
+      "space_saved_percent": 82.6,
+      "frobenius_relative_error": 0.163195,
+      "rmse": 12.709,
+      "psnr_db": 26.05,
+      "energy_retained_percent": 97.34,
+      "image_file": "recon_k_020.png"
+    },
+    {
+      "rank_k": 180,
+      "stored_values": 57600,
+      "original_values": 57600,
+      "storage_ratio": 1.0,
+      "space_saved_percent": 0.0,
+      "frobenius_relative_error": 0.0,
+      "rmse": 0.0,
+      "psnr_db": 99.9,
+      "energy_retained_percent": 100.0,
+      "image_file": "recon_full.png"
+    }
+  ]
+}
