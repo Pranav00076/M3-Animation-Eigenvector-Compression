@@ -1,0 +1,563 @@
+1
+00:00:00,110 --> 00:00:02,830
+Every photograph tells a story. We see
+
+2
+00:00:02,830 --> 00:00:05,790
+mountains, lights, shadows, and
+
+3
+00:00:05,790 --> 00:00:08,110
+countless tiny details. But to a
+
+4
+00:00:08,110 --> 00:00:10,590
+computer, an image is not really a
+
+5
+00:00:10,590 --> 00:00:12,830
+photograph. It is a collection of
+
+6
+00:00:12,830 --> 00:00:15,510
+numbers. Every pixel stores numerical
+
+7
+00:00:15,510 --> 00:00:17,630
+information, and when millions of these
+
+8
+00:00:17,630 --> 00:00:19,950
+pixels come together, they create the
+
+9
+00:00:19,950 --> 00:00:22,430
+images we see every day. Now,
+
+10
+00:00:22,510 --> 00:00:24,670
+imagine if we could represent an entire
+
+11
+00:00:24,670 --> 00:00:26,750
+photograph using significantly fewer
+
+12
+00:00:26,750 --> 00:00:29,340
+numberswithout losing most of what makes
+
+13
+00:00:29,340 --> 00:00:31,900
+it recognizable. Would that be possible?
+
+14
+00:00:32,220 --> 00:00:34,660
+Surprisingly, the answer comes from
+
+15
+00:00:34,660 --> 00:00:37,500
+mathematics. More specifically, from the
+
+16
+00:00:37,500 --> 00:00:39,580
+fascinating world of linear algebra,
+
+17
+00:00:39,860 --> 00:00:42,460
+where matrices, eigenvectors, and
+
+18
+00:00:42,460 --> 00:00:44,540
+eigenvalues can help us understand how
+
+19
+00:00:44,540 --> 00:00:47,180
+information is structured. Today,
+
+20
+00:00:47,580 --> 00:00:49,740
+let's uncover the mathematics behind
+
+21
+00:00:49,740 --> 00:00:50,780
+image compression.
+
+22
+00:00:51,158 --> 00:00:53,078
+Let's start with how a computer
+
+23
+00:00:53,078 --> 00:00:55,838
+understands an image. An image is made-up
+
+24
+00:00:55,838 --> 00:00:58,518
+of tiny elements called pixels. Each
+
+25
+00:00:58,518 --> 00:01:00,678
+pixel contains numerical values
+
+26
+00:01:00,678 --> 00:01:03,158
+representing its brightness and color. To
+
+27
+00:01:03,158 --> 00:01:06,118
+simplify our calculations, we convert
+
+28
+00:01:06,118 --> 00:01:08,838
+our photograph into grayscale. Now,
+
+29
+00:01:08,998 --> 00:01:10,958
+every pixel can be represented by a
+
+30
+00:01:10,958 --> 00:01:13,718
+single intensity value, instead of three
+
+31
+00:01:13,718 --> 00:01:16,218
+separate color channels. We can arrange
+
+32
+00:01:16,218 --> 00:01:18,658
+these values into a rectangular matrix,
+
+33
+00:01:18,938 --> 00:01:21,938
+which we'll call A. In our example, the
+
+34
+00:01:21,938 --> 00:01:24,298
+matrix has 180 rows and
+
+35
+00:01:24,298 --> 00:01:26,978
+320 columns. That gives us a
+
+36
+00:01:26,978 --> 00:01:29,538
+total of 57,600
+
+37
+00:01:29,538 --> 00:01:32,338
+numerical values. So, instead of
+
+38
+00:01:32,338 --> 00:01:34,658
+working with a photograph, we are now
+
+39
+00:01:34,658 --> 00:01:37,098
+working with a mathematical object. And
+
+40
+00:01:37,098 --> 00:01:38,818
+this is where something interesting
+
+41
+00:01:38,818 --> 00:01:39,378
+happens.
+
+42
+00:01:39,778 --> 00:01:41,778
+Can we find a simpler mathematical
+
+43
+00:01:41,778 --> 00:01:44,378
+representation of this matrix, one that
+
+44
+00:01:44,378 --> 00:01:46,058
+captures most of its important
+
+45
+00:01:46,058 --> 00:01:48,978
+information?To answer that, we first
+
+46
+00:01:48,978 --> 00:01:51,018
+need to understand egenvectors and
+
+47
+00:01:51,018 --> 00:01:52,098
+diagonalization.
+
+48
+00:01:52,496 --> 00:01:54,835
+Our image matrix A is rectangular.
+
+49
+00:01:55,137 --> 00:01:57,326
+Ordinary eigenvalue diagonalization
+
+50
+00:01:57,326 --> 00:01:59,892
+applies to square matrices, so we cannot
+
+51
+00:01:59,892 --> 00:02:02,194
+directly diagonalize this image matrix in
+
+52
+00:02:02,194 --> 00:02:05,024
+the usual way. Instead, we construct a
+
+53
+00:02:05,024 --> 00:02:07,892
+new matrix by multiplying a transpose by
+
+54
+00:02:08,269 --> 00:02:10,156
+A. An eigenvector represents a special
+
+55
+00:02:10,156 --> 00:02:12,081
+direction that remains unchanged in
+
+56
+00:02:12,081 --> 00:02:14,307
+direction when a matrix transformation is
+
+57
+00:02:14,307 --> 00:02:16,515
+applied. It may only be stretched,
+
+58
+00:02:16,741 --> 00:02:18,930
+compressed, or reversed. The
+
+59
+00:02:18,930 --> 00:02:20,817
+corresponding eigenvalue tells us the
+
+60
+00:02:20,817 --> 00:02:23,081
+factor by which that direction is scaled.
+
+61
+00:02:23,458 --> 00:02:25,760
+Mathematically, we can express the
+
+62
+00:02:25,760 --> 00:02:28,741
+decomposition as: A transpose A equals
+
+63
+00:02:28,741 --> 00:02:31,609
+V lambda V transpose. But what does this
+
+64
+00:02:31,609 --> 00:02:34,250
+actually mean?Think of it as changing our
+
+65
+00:02:34,250 --> 00:02:37,213
+coordinate system. In this new basis,the
+
+66
+00:02:37,213 --> 00:02:40,118
+matrix becomes diagonal. This reveals the
+
+67
+00:02:40,118 --> 00:02:41,213
+underlying structure of the
+
+68
+00:02:41,213 --> 00:02:43,477
+transformation and leads us directly to
+
+69
+00:02:43,477 --> 00:02:44,534
+our next concept
+
+70
+00:02:44,867 --> 00:02:46,848
+This brings us to singular value
+
+71
+00:02:46,848 --> 00:02:49,438
+decomposition. SVD allows us to
+
+72
+00:02:49,438 --> 00:02:51,952
+decompose our original matrix into three
+
+73
+00:02:51,952 --> 00:02:54,695
+simpler matrices: U, Sigma,
+
+74
+00:02:54,924 --> 00:02:57,667
+and V transpose. Each matrix plays a
+
+75
+00:02:57,667 --> 00:03:00,409
+different role. V transpose represents
+
+76
+00:03:00,409 --> 00:03:03,114
+the input directions. Sigma contains the
+
+77
+00:03:03,114 --> 00:03:05,286
+singular values, which describe how
+
+78
+00:03:05,286 --> 00:03:08,009
+strongly each component is scaled. and u
+
+79
+00:03:08,009 --> 00:03:09,990
+represents the corresponding output
+
+80
+00:03:09,990 --> 00:03:12,124
+directions. An important connection
+
+81
+00:03:12,124 --> 00:03:14,600
+exists between eigenvalues and singular
+
+82
+00:03:14,600 --> 00:03:16,848
+values. The singular values are the
+
+83
+00:03:16,848 --> 00:03:18,752
+square roots of the eigenvalues of A
+
+84
+00:03:18,752 --> 00:03:19,476
+transpose
+
+85
+00:03:19,476 --> 00:03:22,333
+A. In other words, lambda i equals
+
+86
+00:03:22,333 --> 00:03:25,076
+sigma i squared. These singular values
+
+87
+00:03:25,076 --> 00:03:27,209
+are arranged from largest to smallest.
+
+88
+00:03:27,590 --> 00:03:29,571
+The largest values generally represent
+
+89
+00:03:29,571 --> 00:03:31,324
+the strongest components of the image.
+
+90
+00:03:31,686 --> 00:03:33,324
+while smaller values contribute
+
+91
+00:03:33,324 --> 00:03:35,609
+progressively less. And this gives us a
+
+92
+00:03:35,609 --> 00:03:38,543
+powerful idea. What if we simply removed
+
+93
+00:03:38,543 --> 00:03:40,790
+some of the smaller components?Could we
+
+94
+00:03:40,790 --> 00:03:42,619
+still reconstruct an image that looks
+
+95
+00:03:42,619 --> 00:03:43,990
+almost like the original?
+
+96
+00:03:44,318 --> 00:03:46,528
+This is where image compression happens.
+
+97
+00:03:46,908 --> 00:03:49,118
+Instead of keeping every singular value,
+
+98
+00:03:49,423 --> 00:03:51,823
+we retain only the largest k values and
+
+99
+00:03:51,823 --> 00:03:53,766
+their corresponding vectors. This
+
+100
+00:03:53,766 --> 00:03:55,937
+technique is called truncated singular
+
+101
+00:03:55,937 --> 00:03:58,794
+value decomposition. Our approximation is
+
+102
+00:03:58,794 --> 00:04:01,613
+represented by uk, sigmak
+
+103
+00:04:02,147 --> 00:04:04,966
+and vk transpose. Let's see what
+
+104
+00:04:04,966 --> 00:04:07,566
+happens when we change k. With just one
+
+105
+00:04:07,566 --> 00:04:09,547
+component, we capture the broadest
+
+106
+00:04:09,547 --> 00:04:11,756
+structure of the image, but lose most of
+
+107
+00:04:11,756 --> 00:04:14,385
+its fine details. With five components,
+
+108
+00:04:14,689 --> 00:04:17,013
+more shapes and visual features begin to
+
+109
+00:04:17,013 --> 00:04:17,432
+appear.
+
+110
+00:04:17,773 --> 00:04:20,653
+At rank 10, the reconstruction becomes
+
+111
+00:04:20,653 --> 00:04:23,213
+much more recognizable. And with 20
+
+112
+00:04:23,213 --> 00:04:25,853
+components, we recover a surprisingly
+
+113
+00:04:25,853 --> 00:04:28,013
+detailed approximation of the original
+
+114
+00:04:28,013 --> 00:04:30,673
+photograph. Now, let's look at the
+
+115
+00:04:30,673 --> 00:04:33,473
+numbers. Our original matrix contains
+
+116
+00:04:33,473 --> 00:04:35,393
+57,600
+
+117
+00:04:35,393 --> 00:04:38,353
+values. But with a rank 20 approximation,
+
+118
+00:04:38,673 --> 00:04:41,193
+we only need 10,020 values to
+
+119
+00:04:41,193 --> 00:04:43,233
+represent the image using the truncated
+
+120
+00:04:43,233 --> 00:04:45,393
+factors. That's approximately
+
+121
+00:04:45,393 --> 00:04:48,033
+82.6% fewer numerical
+
+122
+00:04:48,033 --> 00:04:50,382
+values. And the reconstruction retains
+
+123
+00:04:50,593 --> 00:04:53,433
+approximately 97.3% of the
+
+124
+00:04:53,433 --> 00:04:54,805
+original image's energy.
+
+125
+00:04:55,152 --> 00:04:58,032
+we can preserve much of the
+
+126
+00:04:58,032 --> 00:04:59,832
+image's important structure while
+
+127
+00:04:59,832 --> 00:05:01,912
+representing it with far fewer numbers.
+
+128
+00:05:02,302 --> 00:05:04,102
+We began with a photograph and
+
+129
+00:05:04,102 --> 00:05:06,862
+transformed it into a matrix. Using
+
+130
+00:05:06,862 --> 00:05:09,702
+egenvectors and diagonalization, we
+
+131
+00:05:09,702 --> 00:05:11,822
+explored its mathematical structure.
+
+132
+00:05:12,142 --> 00:05:14,062
+Then, through singular value
+
+133
+00:05:14,062 --> 00:05:16,382
+decomposition, we identified the
+
+134
+00:05:16,382 --> 00:05:18,342
+components that contribute most to the
+
+135
+00:05:18,342 --> 00:05:20,662
+image. By keeping only the most
+
+136
+00:05:20,662 --> 00:05:23,102
+significant components, we created a
+
+137
+00:05:23,102 --> 00:05:25,502
+low-rank approximation. And that's the
+
+138
+00:05:25,502 --> 00:05:27,542
+fascinating connection between linear
+
+139
+00:05:27,542 --> 00:05:30,142
+algebra and image compression. Less
+
+140
+00:05:30,142 --> 00:05:33,142
+data, nearly the same picture. That's
+
+141
+00:05:33,142 --> 00:05:35,582
+the mathematics behind image compression.
